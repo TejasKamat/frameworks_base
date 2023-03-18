@@ -85,10 +85,6 @@ constructor(
         }
     }
 
-    fun updateSettings() {
-        registry.updateSettings()
-    }
-
     private fun quickAffordanceInternal(
         position: KeyguardQuickAffordancePosition
     ): Flow<KeyguardQuickAffordanceModel> {

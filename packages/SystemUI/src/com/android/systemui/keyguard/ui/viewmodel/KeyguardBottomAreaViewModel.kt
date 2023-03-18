@@ -56,10 +56,10 @@ constructor(
             .distinctUntilChanged()
 
     /** An observable for the view-model of the "start button" quick affordance. */
-    var startButton: Flow<KeyguardQuickAffordanceViewModel> =
+    val startButton: Flow<KeyguardQuickAffordanceViewModel> =
         button(KeyguardQuickAffordancePosition.BOTTOM_START)
     /** An observable for the view-model of the "end button" quick affordance. */
-    var endButton: Flow<KeyguardQuickAffordanceViewModel> =
+    val endButton: Flow<KeyguardQuickAffordanceViewModel> =
         button(KeyguardQuickAffordancePosition.BOTTOM_END)
     /** An observable for whether the overlay container should be visible. */
     val isOverlayContainerVisible: Flow<Boolean> =
@@ -67,7 +67,7 @@ constructor(
     /** An observable for the alpha level for the entire bottom area. */
     val alpha: Flow<Float> = bottomAreaInteractor.alpha.distinctUntilChanged()
     /** An observable for whether the indication area should be padded. */
-    var isIndicationAreaPadded: Flow<Boolean> =
+    val isIndicationAreaPadded: Flow<Boolean> =
         combine(startButton, endButton) { startButtonModel, endButtonModel ->
                 startButtonModel.isVisible || endButtonModel.isVisible
             }
@@ -127,17 +127,6 @@ constructor(
                 )
             is KeyguardQuickAffordanceModel.Hidden -> KeyguardQuickAffordanceViewModel()
         }
-    }
-
-    fun updateSettings() {
-        quickAffordanceInteractor.updateSettings()
-        startButton = button(KeyguardQuickAffordancePosition.BOTTOM_START)
-        endButton = button(KeyguardQuickAffordancePosition.BOTTOM_END)
-        isIndicationAreaPadded =
-            combine(startButton, endButton) { startButtonModel, endButtonModel ->
-                startButtonModel.isVisible || endButtonModel.isVisible
-            }
-            .distinctUntilChanged()
     }
 
     companion object {
