@@ -242,5 +242,4 @@ interface IStatusBarService
     void preloadRecentApps();
     void cancelPreloadRecentApps();
     void killForegroundApp();
-    void screenPinningStateChanged(boolean enabled);
 }
